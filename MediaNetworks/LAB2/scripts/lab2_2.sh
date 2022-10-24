@@ -18,7 +18,7 @@ sleep 1;
 
 echo -e "";
 echo -e "Removing old nginx-config";
-sudo mv "/etc/nginx/nginx.conf" "/etc/nginx/nginx.conf.bak"; > /dev/null;
+sudo mv "/etc/nginx/nginx.conf" "/etc/nginx/nginx.conf.bak"; > /dev/null 2>&1;
 sleep 1;
 
 echo -e "Configuring nginx";
@@ -88,21 +88,21 @@ sleep 1;
 echo -e "";
 echo -e "Creating HLS-folder";
 sleep 1;
-sudo mkdir "/tmp/hls";  > /dev/null;
+sudo mkdir "/tmp/hls";  > /dev/null 2>&1;
 sleep 1;
 
 echo -e "";
 echo -e "Removing any old website-files and folders.";
-sudo rm -R "/var/www/$name"; > /dev/null;
+sudo rm -R "/var/www/$name"; > /dev/null 2>&1;
 sleep 1;
 
 echo -e "";
 echo -e "Creating website folders";
 sleep 1;
-sudo mkdir "/var/www/$name"; > /dev/null;
-sudo mkdir "/var/www/$name/rec"; > /dev/null;
-sudo mkdir "/tmp/hls"; > /dev/null;
-sudo chmod 777 "/var/www/$name/rec";  > /dev/null;
+sudo mkdir "/var/www/$name"; > /dev/null 2>&1;
+sudo mkdir "/var/www/$name/rec"; > /dev/null 2>&1;
+sudo mkdir "/tmp/hls"; > /dev/null 2>&1;
+sudo chmod 777 "/var/www/$name/rec";  > /dev/null 2>&1;
 echo -e "
 <!DOCTYPE html>
 <html lang=\"en\">
@@ -144,10 +144,10 @@ sleep 1;
 
 echo -e "";
 echo -e "Downloading config-files to allow playback of .m3u8-files in-browser";
-wget -q "https://raw.githubusercontent.com/Smile4Blitz/school/main/MediaNetworks/LAB2/website/custom.css"  > /dev/null;
-wget -q "https://raw.githubusercontent.com/Smile4Blitz/school/main/MediaNetworks/LAB2/website/video-js.css"  > /dev/null;
-wget -q "https://raw.githubusercontent.com/Smile4Blitz/school/main/MediaNetworks/LAB2/website/video.min.js"  > /dev/null;
-wget -q "https://github.com/Smile4Blitz/school/raw/main/MediaNetworks/LAB2/website/poster.jpg"  > /dev/null;
+wget -q "https://raw.githubusercontent.com/Smile4Blitz/school/main/MediaNetworks/LAB2/website/custom.css"  > /dev/null 2>&1;
+wget -q "https://raw.githubusercontent.com/Smile4Blitz/school/main/MediaNetworks/LAB2/website/video-js.css"  > /dev/null 2>&1;
+wget -q "https://raw.githubusercontent.com/Smile4Blitz/school/main/MediaNetworks/LAB2/website/video.min.js"  > /dev/null 2>&1;
+wget -q "https://github.com/Smile4Blitz/school/raw/main/MediaNetworks/LAB2/website/poster.jpg"  > /dev/null 2>&1;
 sleep 1;
 
 echo -e "Moving downloaded files";
