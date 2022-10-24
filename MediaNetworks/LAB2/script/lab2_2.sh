@@ -18,7 +18,7 @@ sleep 1;
 
 echo -e "";
 echo -e "Removing old nginx-config";
-sudo mv "/etc/nginx/nginx.conf" "/etc/nginx/nginx.conf.bak"; > /dev/null 2>&1;
+sudo mv "/etc/nginx/nginx.conf" "/etc/nginx/nginx.conf.bak" > /dev/null 2>&1;
 sleep 1;
 
 echo -e "Configuring nginx";
@@ -93,16 +93,16 @@ sleep 1;
 
 echo -e "";
 echo -e "Removing any old website-files and folders.";
-sudo rm -R "/var/www/$name"; > /dev/null 2>&1;
+sudo rm -R "/var/www/$name" > /dev/null 2>&1;
 sleep 1;
 
 echo -e "";
 echo -e "Creating website folders";
 sleep 1;
-sudo mkdir "/var/www/$name"; > /dev/null 2>&1;
-sudo mkdir "/var/www/$name/rec"; > /dev/null 2>&1;
-sudo mkdir "/tmp/hls"; > /dev/null 2>&1;
-sudo chmod 777 "/var/www/$name/rec";  > /dev/null 2>&1;
+sudo mkdir "/var/www/$name" > /dev/null 2>&1;
+sudo mkdir "/var/www/$name/rec" > /dev/null 2>&1;
+sudo mkdir "/tmp/hls" > /dev/null 2>&1;
+sudo chmod 777 "/var/www/$name/rec" > /dev/null 2>&1;
 echo -e "
 <!DOCTYPE html>
 <html lang=\"en\">
