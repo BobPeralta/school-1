@@ -91,6 +91,23 @@ server {
 " > streaming.conf;
 sudo mv streaming.conf /etc/nginx/rtmpconf.d;
 
+echo -e "server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /var/www/html;
+        
+        index hls.html dash.html;
+
+        server_name _;
+
+        location / {
+                try_files \$uri \$uri/ =404;
+        }
+}
+" > default;
+sudo mv default /etc/nginx/sites-available;
+
 echo -e "Creating HTML-folders";
 sleep 1;
 sudo rm -R /var/www/html/* > /dev/null 2>&1;
