@@ -10,7 +10,8 @@ sudo apt -qq -y install nginx libnginx-mod-rtmp ffmpeg build-essential;
 echo -e "";
 echo -e "Configuring NGINX";
 sleep 1;
-echo -e "user www-data;
+echo -e "
+user www-data;
 worker_processes auto;
 pid /run/nginx.pid;
 include /etc/nginx/modules-enabled/*.conf;
@@ -46,7 +47,8 @@ sudo mv nginx.conf /etc/nginx/nginx.conf;
 echo -e "Configuring RTMP";
 sleep 1;
 sudo mkdir /etc/nginx/rtmpconf.d > /dev/null 2>&1;
-echo -e "server {
+echo -e "
+server {
         listen 1935;
         chunk_size 4096;
 
@@ -104,6 +106,7 @@ sudo chmod 777 /var/www/html/rec;
 
 echo -e "Downloading HTML-files";
 sleep 1;
+
 sudo wget https://raw.githubusercontent.com/dust555/MediaNetworks/main/HttpStreaming/dash.all.js > /dev/null 2>&1;
 sudo wget https://raw.githubusercontent.com/dust555/MediaNetworks/main/HttpStreaming/dash.html > /dev/null 2>&1;
 sudo wget https://raw.githubusercontent.com/dust555/MediaNetworks/main/HttpStreaming/dash.php > /dev/null 2>&1;
@@ -118,14 +121,13 @@ sudo mv hls.html /var/www/html > /dev/null 2>&1;
 sudo mv hls.js /var/www/html > /dev/null 2>&1;
 sudo mv hls.php /var/www/html > /dev/null 2>&1;
 
-sudo chmod 777 /var/www/html/*;
-
 echo -e "";
 read -rp "Would you like to create an SSL-certificate? (Y/N): " OK;
 if [ "$OK" == Y ] || [ "$OK" == y ]
 then
     read -rp "Enter your DDNS: " DDNS;
-    echo -e "server {
+    echo -e "
+    server {
         listen 80 default_server;
         listen [::]:80 default_server;
 
@@ -143,8 +145,39 @@ then
     }" > /etc/nginx/sites-available/default;
     sudo apt -qq -y install certbot python3-certbot-nginx;
     sudo certbot --nginx -d "$DDNS";
+    echo -e "";
+    read -rp "Are you using NOIP? (Y/N): " OK;
+    if [ "$OK" == Y ] || [ "$OK" == y ]
+    then
+        echo -e "Downloading Dynamic-update files";
+        sudo wget http://www.noip.com/client/linux/noip-duc-linux.tar.gz;
+        sudo tar xf noip-duc-linux.tar.gz;
+        sudo touch noip2.service;
+        sudo chmod 777 noip2.service;
+        echo -e "[Unit]
+Description=noip2 service
+
+[Service]
+Type=forking
+ExecStart=/usr/local/bin/noip2
+Restart=always
+
+[Install]
+WantedBy=default.target
+        " > noip2.service;
+        sudo mv noip2.service /etc/systemd/system;
+        sudo systemctl enable noip2.service;
+        echo -e "WARNING: You still need to configure the dynamic update service!!!";
+        echo -e "Use to following steps:
+        -   cd noip-*
+        -   sudo make install
+        -   follow the configuration steps
+        "
+        sleep 1;
+    fi
 fi
 
+echo "";
 echo -e "Restarting nginx";
 sudo systemctl restart nginx;
 exit 0;
