@@ -91,6 +91,8 @@ sudo mv streaming.conf /etc/nginx/rtmpconf.d;
 
 echo -e "Creating HTML-folders";
 sleep 1;
+sudo rm -R /var/www/html/* > /dev/null 2>&1;
+
 sudo mkdir /var/www/html/hls;
 sudo mkdir /var/www/html/dash;
 sudo mkdir /var/www/html/rec;
@@ -102,8 +104,6 @@ sudo chmod 777 /var/www/html/rec;
 
 echo -e "Downloading HTML-files";
 sleep 1;
-sudo rm -R /var/www/html/* > /dev/null 2>&1;
-
 sudo wget https://raw.githubusercontent.com/dust555/MediaNetworks/main/HttpStreaming/dash.all.js > /dev/null 2>&1;
 sudo wget https://raw.githubusercontent.com/dust555/MediaNetworks/main/HttpStreaming/dash.html > /dev/null 2>&1;
 sudo wget https://raw.githubusercontent.com/dust555/MediaNetworks/main/HttpStreaming/dash.php > /dev/null 2>&1;
