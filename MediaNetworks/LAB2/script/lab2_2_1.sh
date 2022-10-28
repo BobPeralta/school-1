@@ -188,8 +188,7 @@ WantedBy=default.target
         echo -e "Use to following steps:
         -   cd noip-*
         -   sudo make install
-        -   follow the configuration steps
-        "
+        -   follow the configuration steps"
         sleep 1;
     fi
 fi
