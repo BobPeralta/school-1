@@ -10,8 +10,7 @@ sudo apt -qq -y install nginx libnginx-mod-rtmp ffmpeg build-essential;
 echo -e "";
 echo -e "Configuring NGINX";
 sleep 1;
-echo -e "
-user www-data;
+echo -e "user www-data;
 worker_processes auto;
 pid /run/nginx.pid;
 include /etc/nginx/modules-enabled/*.conf;
@@ -47,8 +46,7 @@ sudo mv nginx.conf /etc/nginx/nginx.conf;
 echo -e "Configuring RTMP";
 sleep 1;
 sudo mkdir /etc/nginx/rtmpconf.d > /dev/null 2>&1;
-echo -e "
-server {
+echo -e "server {
         listen 1935;
         chunk_size 4096;
 
@@ -120,13 +118,14 @@ sudo mv hls.html /var/www/html > /dev/null 2>&1;
 sudo mv hls.js /var/www/html > /dev/null 2>&1;
 sudo mv hls.php /var/www/html > /dev/null 2>&1;
 
+sudo chmod 777 /var/www/html/*;
+
 echo -e "";
 read -rp "Would you like to create an SSL-certificate? (Y/N): " OK;
 if [ "$OK" == Y ] || [ "$OK" == y ]
 then
     read -rp "Enter your DDNS: " DDNS;
-    echo -e "
-    server {
+    echo -e "server {
         listen 80 default_server;
         listen [::]:80 default_server;
 
