@@ -1,14 +1,15 @@
 #!/bin/bash
-echo -e "Updating:";
+echo -e "Updating";
 sudo apt -qq -y update;
 sudo apt -qq -y upgrade;
 
 echo -e "";
-echo -e "Installing required packages:";
+echo -e "Installing required packages";
 sudo apt -qq -y install nginx libnginx-mod-rtmp ffmpeg build-essential;
 
 echo -e "";
-echo -e "Configuring NGINX: ";
+echo -e "Configuring NGINX";
+sleep 1;
 echo -e "
 user www-data;
 worker_processes auto;
@@ -40,10 +41,11 @@ http {
 rtmp {
         include /etc/nginx/rtmpconf.d/*.conf;
 }
-" > /etc/nginx/nginx.conf;
+" > nginx.conf;
+sudo mv nginx.conf /etc/nginx/nginx.conf;
 
-echo -e "";
-echo -e "Configuring RTMP: ";
+echo -e "Configuring RTMP";
+sleep 1;
 sudo mkdir /etc/nginx/rtmpconf.d > /dev/null 2>&1;
 echo -e "
 server {
@@ -65,7 +67,7 @@ server {
               live on;
               record all;
               record_path /var/www/html/rec;
-              exec_record_done ffmpeg -y -i $path -acodec libmp3lame -ar 44100 -ac 1 -vcodec libx264 /var/www/html/rec/$basename.mp4 -vframes 1 /var/www/html/rec/$basename.jpg;
+              exec_record_done ffmpeg -y -i \$path -acodec libmp3lame -ar 44100 -ac 1 -vcodec libx264 /var/www/html/rec/\$basename.mp4 -vframes 1 /var/www/html/rec/\$basename.jpg;
 
               hls on;
               hls_path /var/www/html/hls;
@@ -86,10 +88,11 @@ server {
               play /var/www/html/rec;
         }
 }
-" > rtmpconf.d/streaming.conf;
+" > streaming.conf;
+sudo mv streaming.conf /etc/nginx/rtmpconf.d;
 
-echo -e "";
-echo -e "Creating HTML-folders:";
+echo -e "Creating HTML-folders";
+sleep 1;
 sudo mkdir /var/www/html/hls;
 sudo mkdir /var/www/html/dash;
 sudo mkdir /var/www/html/rec;
@@ -99,8 +102,8 @@ sudo chmod 777 /var/www/html/hls;
 sudo chmod 777 /var/www/html/dash;
 sudo chmod 777 /var/www/html/rec;
 
-echo -e "";
-echo -e "Downloading HTML-files:";
+echo -e "Downloading HTML-files";
+sleep 1;
 sudo rm -R /var/www/html/* > /dev/null 2>&1;
 
 sudo wget https://raw.githubusercontent.com/dust555/MediaNetworks/main/HttpStreaming/dash.all.js > /dev/null 2>&1;
@@ -122,7 +125,7 @@ read -rp "Would you like to create an SSL-certificate? (Y/N): " OK;
 if [ "$OK" == Y ] || [ "$OK" == y ]
 then
     read -rp "Enter your DDNS: " DDNS;
-    echo "
+    echo -e "
     server {
         listen 80 default_server;
         listen [::]:80 default_server;
@@ -143,6 +146,6 @@ then
     sudo certbot --nginx -d "$DDNS";
 fi
 
-echo -e "";
 echo -e "Restarting nginx";
 sudo systemctl restart nginx;
+exit 0;
