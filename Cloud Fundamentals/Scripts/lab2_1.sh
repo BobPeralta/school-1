@@ -3,13 +3,9 @@
 sudo apt -y update
 sudo apt -y install unzip apache2 php s3fs awscli
 
-# S3 access credentials
-echo AKIAVTKT7QKTCZZKDWMC:VV+9jA1i3zcy1RlIIHz2vwPpNjKUBc78f5sJx2x8 > /home/ubuntu/.s3fs-creds
-chmod 600 /home/ubuntu/.s3fs-creds
-
 # S3 mounting
 sudo mkdir /mnt/s3bucket
-sudo s3fs arnohalsberghe: /mnt/s3bucket -o passwd_file=/home/ubuntu/.s3fs-creds,nonempty
+sudo aws s3fs s3BucketName: /mnt/s3bucket
 
 # S3 copying files
 sudo cp /mnt/s3bucket/index.php /var/www/html/index.php
