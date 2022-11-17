@@ -1,0 +1,59 @@
+<device>
+	<deviceProtocol>SIP</deviceProtocol>
+	<sshUserId>admin</sshUserId>
+	<sshPassword>cisco</sshPassword>
+	<devicePool>
+		<dateTimeSetting>
+			<dateTemplate>D-M-Y</dateTemplate>
+			<timeZone>Central Standard/Daylight Time</timeZone>
+			<ntps>
+				<ntp>
+					<name>pool.ntp.org</name>
+				</ntp>
+			</ntps>
+		</dateTimeSetting>
+		<callManagerGroup>
+			<members>
+				<member priority="0">
+					<callManager>
+						<ports>
+							<ethernetPhonePort>2000</ethernetPhonePort>
+							<sipPort>5060</sipPort>
+							<securedSipPort>5061</securedSipPort>
+						</ports>
+						<processNodeName>10.0.0.100</processNodeName>
+					</callManager>
+				</member>
+			</members>
+		</callManagerGroup>
+	</devicePool>
+	<sipProfile>
+		<sipProxies>
+			<registerWithProxy>true</registerWithProxy>
+		</sipProxies>
+		<enableVad>false</enableVad>
+		<preferredCodec>g711</preferredCodec>
+		<natEnabled></natEnabled>
+		<phoneLabel>Cisco Phone</phoneLabel>
+		<sipLines>
+			<line button="1">
+				<featureID>9</featureID>
+				<featureLabel>837</featureLabel>
+				<proxy>USECALLMANAGER</proxy>
+				<port>5060</port>
+				<name>cisco</name>
+				<authName>cisco</authName>
+				<authPassword>123</authPassword>
+				<messagesNumber>*97</messagesNumber>
+			</line>
+		</sipLines>
+		<dialTemplate>dialplan.xml</dialTemplate>
+	</sipProfile>
+	<commonProfile>
+		<phonePassword></phonePassword>
+	</commonProfile>
+	<loadInformation></loadInformation>
+	<versionStamp>1143565489-a3cbf294-7526-4c29-8791-c4fce4ce4c37</versionStamp>
+	<servicesURL></servicesURL>
+	<displayIdleTimeout>NONE</displayIdleTimeout>
+</device>
