@@ -1,5 +1,8 @@
 #/bin/bash
 # static ip (not sure if ip forwarding gets enabled):
+{
+    echo -e ""
+}
 #     /etc/sysconfig/network/ifroute-eth0
 #     /etc/sysconfig/network/ifcfg-eth0
 #     /etc/sysconfig/network/ifroute-eth1
