@@ -8,20 +8,23 @@ sudo systemctl stop firewalld;
 #     /etc/sysconfig/network/ifcfg-eth0
 #     /etc/resolv.conf
 
+echo "AHA-LNX-11" > "/etc/hostname";
+echo "nameserver 10.11.8.10" > "/etc/resolv.conf";
+
 # rsyslog
 {
-    echo -e "# TCP syslog
-module(load="imudp")
-input(type="imudp" port="514" ruleset="RemoteLogs")
+echo -e "# TCP syslog
+module(load=\"imudp\")
+input(type=\"imudp\" port=\"514\" ruleset=\"RemoteLogs\")
 
 #UDP syslog
-module(load="imtcp")
-input(type="imtcp" port="514" ruleset="RemoteLogs")
+module(load=\"imtcp\")
+input(type=\"imtcp\" port=\"514\" ruleset=\"RemoteLogs\")
 
 # Where to store the logs
-$template Incoming-logs,"/logs/%HOSTNAME%/%PROGRAMNAME%.log"
-ruleset(name="RemoteLogs"){
-action(type="omfile" dynafile="Incoming-logs")
+\$template Incoming-logs,\"/logs/%HOSTNAME%/%PROGRAMNAME%.log\"
+ruleset(name=\"RemoteLogs\"){
+action(type=\"omfile\" dynafile=\"Incoming-logs\")
 }"
 } > /etc/rsyslog.d/logs.conf;
 
@@ -30,3 +33,6 @@ sudo chmod -R 777 /logs;
 
 sudo systemctl enable rsyslog;
 sudo systemctl restart rsyslog;
+
+sudo reboot now;
+exit;

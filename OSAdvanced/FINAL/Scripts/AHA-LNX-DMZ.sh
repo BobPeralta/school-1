@@ -7,10 +7,11 @@ sudo systemctl stop firewalld;
 #     /etc/sysconfig/network/ifroute-eth0
 #     /etc/sysconfig/network/ifcfg-eth0
 #     /etc/resolv.conf
+
 echo "AHA-LNX-DMZ" > "/etc/hostname";
 
 # install extra packages
-zypper -n install nginx unzip rsyslog;
+sudo zypper -n install nginx unzip rsyslog;
 
 # website
 sudo rm "/srv/www/htdocs/*" -R;
@@ -24,7 +25,7 @@ chmod -R 777 "/srv/www/htdocs";
 
 # rsyslog setup
 {
-    echo -e "*.* @10.11.8.5"
+echo -e "*.* @10.11.8.5"
 } >> "/etc/rsyslog.d/remote.conf"
 
 # enabling extra packages
@@ -33,3 +34,6 @@ systemctl enable rsyslog;
 
 systemctl restart nginx;
 systemctl restart rsyslog;
+
+sudo reboot now;
+exit;
