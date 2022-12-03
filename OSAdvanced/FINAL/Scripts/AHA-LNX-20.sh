@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 # disable firewall:
 sudo systemctl disable firewalld;
 sudo systemctl stop firewalld;
@@ -42,5 +42,5 @@ DHCRELAY_SERVERS=\"10.11.8.10\""
 systemctl enable dhcp-relay;
 systemctl restart dhcp-relay;
 
-sudo reboot now;
+# sudo reboot now;
 exit;

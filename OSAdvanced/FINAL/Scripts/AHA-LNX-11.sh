@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 # disable firewall:
 sudo systemctl disable firewalld;
 sudo systemctl stop firewalld;
@@ -39,5 +39,5 @@ sudo chmod -R 777 /logs;
 sudo systemctl enable rsyslog;
 sudo systemctl restart rsyslog;
 
-sudo reboot now;
+# sudo reboot now;
 exit;
