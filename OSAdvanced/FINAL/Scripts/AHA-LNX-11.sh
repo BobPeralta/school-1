@@ -10,7 +10,19 @@ sudo systemctl stop firewalld;
 
 # rsyslog
 {
-    echo -e ""
+    echo -e "# TCP syslog
+module(load="imudp")
+input(type="imudp" port="514" ruleset="RemoteLogs")
+
+#UDP syslog
+module(load="imtcp")
+input(type="imtcp" port="514" ruleset="RemoteLogs")
+
+# Where to store the logs
+$template Incoming-logs,"/logs/%HOSTNAME%/%PROGRAMNAME%.log"
+ruleset(name="RemoteLogs"){
+action(type="omfile" dynafile="Incoming-logs")
+}"
 } > /etc/rsyslog.d/logs.conf;
 
 sudo mkdir /logs;
