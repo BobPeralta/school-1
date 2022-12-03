@@ -8,8 +8,6 @@ sudo systemctl stop firewalld;
 echo "AHA-LNX-DMZ" > "/etc/hostname";
 echo "nameserver 10.11.8.10" > "/etc/resolv.conf";
 
-#     /etc/sysconfig/network/ifroute-eth0
-
 {
 echo -e "IPADDR='10.10.8.100/24'
 MTU='0'
@@ -24,13 +22,13 @@ echo -e "default 10.10.8.1 - eth0" > /etc/sysconfig/network/ifroute-eth0.YaST2sa
 sudo zypper -n install nginx unzip rsyslog;
 
 # website
-sudo rm "/srv/www/htdocs/*" -R;
-sudo rm "/tmp/*" -R;
+sudo rm /srv/www/htdocs/* -R;
+sudo rm /tmp/* -R;
 
 sudo wget https://github.com/Smile4Blitz/school/raw/main/OSAdvanced/FINAL/Website/FINAL.zip -P /tmp;
 sudo unzip "/tmp/FINAL.zip";
 
-sudo mv "/tmp/*" "/srv/www/htdocs";
+sudo mv /tmp/* "/srv/www/htdocs";
 chmod -R 777 "/srv/www/htdocs";
 
 # rsyslog setup
