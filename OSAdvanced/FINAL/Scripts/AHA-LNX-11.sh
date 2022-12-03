@@ -4,12 +4,17 @@ sudo systemctl disable firewalld;
 sudo systemctl stop firewalld;
 
 # static ip:
-#     /etc/sysconfig/network/ifroute-eth0
-#     /etc/sysconfig/network/ifcfg-eth0
-#     /etc/resolv.conf
 
 echo "AHA-LNX-11" > "/etc/hostname";
 echo "nameserver 10.11.8.10" > "/etc/resolv.conf";
+
+{
+echo -e "IPADDR='10.11.8.5/24'
+BOOTPROTO='static'
+STARTMODE='hotplug'"
+} > /etc/sysconfig/network/ifcfg-eth0;
+
+echo "default 10.11.8.8 - eth0" > /etc/sysconfig/network/ifroute-eth0;
 
 # rsyslog
 {

@@ -11,24 +11,31 @@ read -rp "Which interface is used for VLAN 58: ETH" VLAN58;
 echo "AHA-LNX-20" > "/etc/hostname";
 echo "nameserver 10.11.8.10" > "/etc/resolv.conf";
 
-# /etc/sysconfig/network/ifcfg-eth0
-# /etc/sysconfig/network/ifcfg-eth1
+{
+echo -e "IPADDR='10.12.8.9/24'
+BOOTPROTO='static'
+STARTMODE='hotplug'"
+} > /etc/sysconfig/network/ifcfg-eth$VLAN57;
+
+{
+echo -e "IPADDR='10.99.8.9/24'
+BOOTPROTO='static'
+STARTMODE='hotplug'"
+} > /etc/sysconfig/network/ifcfg-eth$VLAN58;
 
 # ip forwarding
 echo -e "net.ipv4.ip_forward = 1" > /etc/sysctl.d/70-yast.conf;
 
 # routes
-# /etc/sysconfig/network/ifroute-eth0
-# /etc/sysconfig/network/ifroute-eth0.YaST2save
-# /etc/sysconfig/network/ifroute-eth1
-# /etc/sysconfig/network/ifroute-eth1.YaST2save
+echo -e "default 10.12.8.8 - eth$VLAN57" > /etc/sysconfig/network/ifroute-eth$VLAN57;
+echo -e "default 10.12.8.8 - eth$VLAN57" > /etc/sysconfig/network/ifroute-eth$VLAN57.YaST2save;
 
 # install extra packages
 sudo zypper -n install dhcp-relay sysvinit-tools;
 
 {
 echo -e "# DHCP RELAY AGENT
-DHCRELAY_INTERFACES=\"eth0 eth1\"
+DHCRELAY_INTERFACES=\"eth$VLAN57 eth$VLAN58\"
 DHCRELAY_SERVERS=\"10.11.8.10\""
 } > /etc/sysconfig/dhcrelay;
 

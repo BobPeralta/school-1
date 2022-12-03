@@ -29,9 +29,9 @@ echo -e "net.ipv4.ip_forward = 1" > /etc/sysctl.d/70-yast.conf;
 # routes
 echo -e "default 10.11.8.1 - eth0" > /etc/sysconfig/network/ifroute-eth$VLAN56;
 echo -e "default 10.11.8.1 - eth0" > /etc/sysconfig/network/ifroute-eth$VLAN56.YaST2save;
-echo -e "10.99.8.0/24 10.12.8.9 - eth1" > /etc/sysconfig/network/ifroute-eth$VLAN57;
-echo -e "10.99.8.0/24 10.12.8.9 - eth1" > /etc/sysconfig/network/ifroute-eth$VLAN57.YaST2save;
-echo -e "10.99.8.0       10.12.8.9       255.255.255.0   eth1" > /etc/sysconfig/network/routes.YaST2save;
+echo -e "10.99.8.0/24 10.12.8.9 - eth$VLAN57" > /etc/sysconfig/network/ifroute-eth$VLAN57;
+echo -e "10.99.8.0/24 10.12.8.9 - etc$VLAN57" > /etc/sysconfig/network/ifroute-eth$VLAN57.YaST2save;
+echo -e "10.99.8.0       10.12.8.9       255.255.255.0   eth$VLAN57" > /etc/sysconfig/network/routes.YaST2save;
 
 sudo reboot now;
 exit;
