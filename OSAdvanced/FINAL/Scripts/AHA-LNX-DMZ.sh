@@ -1,13 +1,13 @@
 #/bin/bash
+# disable firewall:
+sudo systemctl disable firewalld;
+sudo systemctl stop firewalld;
+
 # static ip:
 #     /etc/sysconfig/network/ifroute-eth0
 #     /etc/sysconfig/network/ifcfg-eth0
 #     /etc/resolv.conf
 echo "AHA-LNX-DMZ" > "/etc/hostname";
-
-# disable firewall:
-sudo systemctl disable firewalld;
-sudo systemctl stop firewalld;
 
 # install extra packages
 zypper -n install nginx unzip rsyslog;

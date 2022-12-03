@@ -1,6 +1,9 @@
 #/bin/bash
-# static ip (not sure if ip forwarding gets enabled):
+# disable firewall:
+sudo systemctl disable firewalld;
+sudo systemctl stop firewalld;
 
+# static ip (not sure if ip forwarding gets enabled)
 ip a;
 read -rp "Which interface is used for VLAN 56: ETH" VLAN56;
 read -rp "Which interface is used for VLAN 57: ETH" VLAN57;
@@ -26,7 +29,3 @@ echo -e "10.99.8.0       10.12.8.9       255.255.255.0   eth1" > /etc/sysconfig/
 #     /etc/sysconfig/network/routes
 echo "AHA-LNX-10" > "/etc/hostname";
 echo "nameserver 10.11.8.10" > "/etc/resolv.conf";
-
-# disable firewall:
-sudo systemctl disable firewalld;
-sudo systemctl stop firewalld;
