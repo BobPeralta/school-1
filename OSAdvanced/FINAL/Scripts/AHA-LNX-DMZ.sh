@@ -1,4 +1,7 @@
 #!/bin/bash
+
+echo "Starting...";
+
 # disable firewall:
 echo "starting";
 sudo systemctl disable firewalld;
@@ -61,5 +64,9 @@ systemctl enable rsyslog;
 systemctl restart nginx;
 systemctl restart rsyslog;
 
-#sudo reboot now;
+echo "Done...";
+sleep 1;
+echo "Rebooting..";
+
+sudo reboot now;
 exit;
