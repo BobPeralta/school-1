@@ -1,0 +1,26 @@
+;
+;  Database file aha.local.dns for Default zone scope in zone aha.local.
+;      Zone version:  8
+;
+
+@                       IN  SOA aha-win2019. hostmaster. (
+                        		8            ; serial number
+                        		900          ; refresh
+                        		600          ; retry
+                        		86400        ; expire
+                        		3600       ) ; default TTL
+
+;
+;  Zone NS records
+;
+
+@                       NS	aha-win2019.
+
+;
+;  Zone records
+;
+
+AHA-LNX-21              900	A	10.12.8.101
+                        900	DHCID	AAIBhXjAE2AmxfCaVrVxq2+G46cMnNDsdbIcvXq62Tg1xAA=
+AHA-LNX-31              900	A	10.99.8.101
+                        900	DHCID	AAIBr/PBPuGIkMChQ/vY+L5LfskEIjcZdI8fLt2l8Wg62ik=
