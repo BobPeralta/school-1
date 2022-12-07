@@ -44,8 +44,8 @@ sudo systemctl enable rsyslog;
 sudo systemctl restart rsyslog;
 
 echo "Done...";
-sleep 1;
 echo "Rebooting..";
+sleep 5;
 
 sudo reboot now;
 exit;
