@@ -38,6 +38,10 @@ Add-DnsServerPrimaryZone -NetworkId 10.11.8.0/24 -DynamicUpdate NonsecureAndSecu
 Add-DnsServerPrimaryZone -NetworkId 10.12.8.0/24 -DynamicUpdate NonsecureAndSecure -ZoneFile "8.12.10.in-addr.arpa.dns"
 Add-DnsServerPrimaryZone -NetworkId 10.99.8.0/24 -DynamicUpdate NonsecureAndSecure -ZoneFile "8.99.10.in-addr.arpa.dns"
 
+# Forwarders
+Add-DnsServerForwarder -IPAddress 1.1.1.1
+Add-DnsServerForwarder -IPAddress 8.8.8.8
+
 # Installing Firefox
 $regKey = "HKLM:\Software\Microsoft\Windows NT\CurrentVersion"
 $Core = (Get-ItemProperty $regKey).InstallationType -eq "Server Core"
