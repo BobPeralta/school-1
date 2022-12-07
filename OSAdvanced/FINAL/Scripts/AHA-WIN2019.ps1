@@ -10,13 +10,6 @@ if ($HostName -ne "AHA-WIN2019")
 	exit
 }
 
-if ((Test-Path -Path "C:\Program Files\Mozilla Firefox\Firefox.exe") -eq $false)
-{
-    Echo "Installing Firefox"
-    Invoke-WebRequest "https://download-installer.cdn.mozilla.net/pub/firefox/releases/107.0.1/win64/en-US/Firefox%20Setup%20107.0.1.msi" -OutFile "$env:temp\firefox.msi"
-    msiexec.exe /I "$env:temp\firefox.msi" /quiet
-}
-
 # Set static IP
 Echo "Setting static IP"
 
@@ -44,6 +37,14 @@ Add-DnsServerPrimaryZone -Name aha.local -DynamicUpdate NonsecureAndSecure -Conf
 Add-DnsServerPrimaryZone -NetworkId 10.11.8.0/24 -DynamicUpdate NonsecureAndSecure -ZoneFile "8.11.10.in-addr.arpa.dns"
 Add-DnsServerPrimaryZone -NetworkId 10.12.8.0/24 -DynamicUpdate NonsecureAndSecure -ZoneFile "8.12.10.in-addr.arpa.dns"
 Add-DnsServerPrimaryZone -NetworkId 10.99.8.0/24 -DynamicUpdate NonsecureAndSecure -ZoneFile "8.99.10.in-addr.arpa.dns"
+
+# Installing Firefox
+if ((Test-Path -Path "C:\Program Files\Mozilla Firefox\Firefox.exe") -eq $false)
+{
+    Echo "Installing Firefox"
+    Invoke-WebRequest "https://download-installer.cdn.mozilla.net/pub/firefox/releases/107.0.1/win64/en-US/Firefox%20Setup%20107.0.1.msi" -OutFile "$env:temp\firefox.msi"
+    msiexec.exe /I "$env:temp\firefox.msi" /quiet
+}
 
 # Cleanup
 Echo "`nCleaning up"
