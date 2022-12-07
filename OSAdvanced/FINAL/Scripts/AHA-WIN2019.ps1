@@ -20,7 +20,7 @@ Set-DnsClientServerAddress -InterfaceAlias "Ethernet0" -ServerAddresses 1.1.1.1
 
 # Letting the Windows server load the network settings properly (throws error on hostname lookup later)
 Echo "Loading network settings"
-Start-Sleep -Seconds 10
+Start-Sleep -Seconds 5
 
 # DHCP server
 Echo "Setting up the DHCP server"
