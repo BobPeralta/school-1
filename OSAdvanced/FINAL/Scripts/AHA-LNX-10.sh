@@ -11,8 +11,8 @@ ip a;
 read -rp "Which interface is used for VLAN 56: ETH" VLAN56;
 read -rp "Which interface is used for VLAN 57: ETH" VLAN57;
 
-echo "AHA-LNX-10" > "/etc/hostname";
-echo "nameserver 10.11.8.10" > "/tmp/resolv.conf";
+echo "AHA-LNX-10" > /etc/hostname;
+echo "nameserver 10.11.8.10" > /tmp/resolv.conf;
 sudo mv /tmp/resolv.conf /etc/resolv.conf;
 
 {
@@ -38,8 +38,8 @@ echo -e "10.99.8.0/24 10.12.8.9 - etc$VLAN57" > /etc/sysconfig/network/ifroute-e
 echo -e "10.99.8.0       10.12.8.9       255.255.255.0   eth$VLAN57" > /etc/sysconfig/network/routes.YaST2save;
 
 echo "Done...";
-sleep 1;
 echo "Rebooting..";
+sleep 5;
 
 sudo reboot now;
 exit;
