@@ -8,8 +8,9 @@ sudo systemctl stop firewalld;
 
 # static ip:
 
-echo "AHA-LNX-11" > "/etc/hostname";
-echo "nameserver 10.11.8.10" > "/etc/resolv.conf";
+echo "AHA-LNX-11" > /etc/hostname;
+echo "nameserver 10.11.8.10" > /tmp/resolv.conf;
+sudo mv /tmp/resolv.conf /etc/resolv.conf;
 
 {
 echo -e "IPADDR='10.11.8.5/24'
@@ -46,5 +47,5 @@ echo "Done...";
 sleep 1;
 echo "Rebooting..";
 
-#sudo reboot now;
+sudo reboot now;
 exit;

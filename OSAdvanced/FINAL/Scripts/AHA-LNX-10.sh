@@ -33,5 +33,5 @@ echo -e "10.99.8.0/24 10.12.8.9 - eth$VLAN57" > /etc/sysconfig/network/ifroute-e
 echo -e "10.99.8.0/24 10.12.8.9 - etc$VLAN57" > /etc/sysconfig/network/ifroute-eth$VLAN57.YaST2save;
 echo -e "10.99.8.0       10.12.8.9       255.255.255.0   eth$VLAN57" > /etc/sysconfig/network/routes.YaST2save;
 
-# sudo reboot now;
+sudo reboot now;
 exit;
