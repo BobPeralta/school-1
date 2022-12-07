@@ -3,14 +3,13 @@
 echo "Starting...";
 
 # disable firewall:
-echo "starting";
 sudo systemctl disable firewalld;
 sudo systemctl stop firewalld;
 
 # static ip:
 echo "AHA-LNX-DMZ" > /etc/hostname;
 
-echo "nameserver 10.11.8.10" > resolv.conf;
+echo "nameserver 1.1.1.1" > resolv.conf;
 sudo mv resolv.conf /etc;
 
 {
@@ -33,7 +32,7 @@ sudo zypper -n install nginx unzip rsyslog > /dev/null;
 sudo rm -R /srv/www/htdocs/* > /dev/null;
 sudo rm -R /tmp/* > /dev/null;
 
-sudo wget "https://github.com/Smile4Blitz/school/raw/main/OSAdvanced/website/FINAL.zipp" -P /tmp;
+sudo wget "https://github.com/Smile4Blitz/school/raw/main/OSAdvanced/website/FINAL.zip" -P /tmp;
 sudo unzip -qq -o /tmp/FINAL.zip -d /tmp;
 sudo rm /tmp/FINAL.zip;
 
