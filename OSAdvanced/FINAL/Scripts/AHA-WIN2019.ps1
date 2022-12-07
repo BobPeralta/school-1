@@ -41,7 +41,7 @@ Add-DnsServerPrimaryZone -NetworkId 10.99.8.0/24 -DynamicUpdate NonsecureAndSecu
 # Installing Firefox
 if ((Test-Path -Path "C:\Program Files\Mozilla Firefox\Firefox.exe") -eq $false)
 {
-    Echo "Installing Firefox"
+    Echo "`nInstalling Firefox"
     Invoke-WebRequest "https://download-installer.cdn.mozilla.net/pub/firefox/releases/107.0.1/win64/en-US/Firefox%20Setup%20107.0.1.msi" -OutFile "$env:temp\firefox.msi"
     msiexec.exe /I "$env:temp\firefox.msi" /quiet
 }
