@@ -46,8 +46,8 @@ DHCRELAY_INTERFACES=\"eth$VLAN57 eth$VLAN58\"
 DHCRELAY_SERVERS=\"10.11.8.10\""
 } > /etc/sysconfig/dhcrelay;
 
-systemctl enable dhcp-relay;
-systemctl restart dhcp-relay;
+systemctl enable dhcrelay;
+systemctl restart dhcrelay;
 
 echo "Done...";
 echo "Rebooting..";
