@@ -4,8 +4,8 @@ if ($HostName -ne "AHA-WIN2019")
 {
     Echo "We first have to set your hostname correctly."
     Rename-Computer -NewName AHA-WIN2019 -Confirm
-    Echo "CHANGE YOUR ADAPTER"
     Echo "Restart required, PC will restart in 5 seconds, then run the script again."
+    Echo "CHANGE YOUR ADAPTER"
     Start-Sleep -Seconds 5
     Restart-Computer
 }
