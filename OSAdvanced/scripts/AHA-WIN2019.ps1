@@ -25,7 +25,7 @@ Start-Sleep -Seconds 5
 
 # DHCP server
 Echo "Setting up the DHCP server"
-Invoke-WebRequest "https://raw.githubusercontent.com/Smile4Blitz/school/main/OSAdvanced/FINAL/WinSer/dhcpexport.xml" -OutFile "$env:temp\dhcpexport.xml"
+Invoke-WebRequest "https://raw.githubusercontent.com/Smile4Blitz/school/main/OSAdvanced/WinSer/dhcpexport.xml" -OutFile "$env:temp\dhcpexport.xml"
 Install-WindowsFeature DHCP -IncludeManagementTools
 Import-DhcpServer -Confirm:$false -File "$env:temp\dhcpexport.xml" -BackupPath "C:\dhcpbackup"
 

@@ -33,7 +33,7 @@ sudo zypper -n install nginx unzip rsyslog > /dev/null;
 sudo rm -R /srv/www/htdocs/* > /dev/null;
 sudo rm -R /tmp/* > /dev/null;
 
-sudo wget "https://github.com/Smile4Blitz/school/raw/main/OSAdvanced/FINAL/Website/FINAL.zip" -P /tmp;
+sudo wget "https://github.com/Smile4Blitz/school/raw/main/OSAdvanced/website/FINAL.zipp" -P /tmp;
 sudo unzip -qq -o /tmp/FINAL.zip -d /tmp;
 sudo rm /tmp/FINAL.zip;
 
