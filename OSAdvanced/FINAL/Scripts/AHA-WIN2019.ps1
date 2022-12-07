@@ -55,7 +55,7 @@ if ($Core -eq $False) {
 # Cleanup
 Echo "`nCleaning up"
 Remove-Item "$env:temp\dhcpexport.xml"
-if ((Test-Path -Path "C:\Program Files\Mozilla Firefox\Firefox.exe") -eq $false)
+if ((Test-Path -Path "C:\Program Files\Mozilla Firefox\Firefox.exe") -eq $true)
 {
     Remove-Item "$env:temp\firefox.msi"
 }
