@@ -35,6 +35,9 @@ echo -e "net.ipv4.ip_forward = 1" > /etc/sysctl.d/70-yast.conf;
 echo -e "default 10.12.8.8 - eth$VLAN57" > /etc/sysconfig/network/ifroute-eth$VLAN57;
 echo -e "default 10.12.8.8 - eth$VLAN57" > /etc/sysconfig/network/ifroute-eth$VLAN57.YaST2save;
 
+sudo rcnetwork restart;
+sleep 5;
+
 # install extra packages
 sudo zypper -n install dhcp-relay sysvinit-tools;
 
