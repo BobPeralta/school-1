@@ -11,8 +11,8 @@ ip a;
 read -rp "Which interface is used for VLAN 57: ETH" VLAN57;
 read -rp "Which interface is used for VLAN 58: ETH" VLAN58;
 
-echo "AHA-LNX-20" > "/etc/hostname";
-echo "nameserver 10.11.8.10" > "/tmp/resolv.conf";
+echo "AHA-LNX-20" > /etc/hostname;
+echo "nameserver 10.11.8.10" > /tmp/resolv.conf;
 sudo mv /tmp/resolv.conf /etc/resolv.conf;
 
 {
@@ -50,8 +50,8 @@ systemctl enable dhcp-relay;
 systemctl restart dhcp-relay;
 
 echo "Done...";
-sleep 1;
 echo "Rebooting..";
+sleep 5;
 
 sudo reboot now;
 exit;
