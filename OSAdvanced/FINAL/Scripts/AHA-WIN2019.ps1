@@ -7,7 +7,6 @@ if ($HostName -ne "AHA-WIN2019")
     Echo "Restart required, PC will restart in 5 seconds, then run the script again."
     Start-Sleep -Seconds 5
     Restart-Computer
-	exit
 }
 
 # Set static IP
@@ -56,6 +55,4 @@ if ((Test-Path -Path "C:\Program Files\Mozilla Firefox\Firefox.exe") -eq $false)
 
 Echo "Done, PC will restart in 5 seconds."
 Start-Sleep -Seconds 5
-Reboot
-exit
-
+Restart-Computer
