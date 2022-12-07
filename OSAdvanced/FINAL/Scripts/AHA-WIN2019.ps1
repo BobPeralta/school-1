@@ -17,7 +17,7 @@ Remove-NetIPAddress -InterfaceAlias "Ethernet0" -Confirm:$false -ErrorAction Sil
 Remove-NetRoute -InterfaceAlias "Ethernet0" -Confirm:$false  -ErrorAction SilentlyContinue
 
 New-NetIPAddress -IPAddress 10.11.8.10 -InterfaceAlias "Ethernet0" -DefaultGateway 10.11.8.8 -AddressFamily IPv4 -PrefixLength 24
-Set-DnsClientServerAddress -InterfaceAlias "Ethernet0" -ServerAddresses 8.8.8.8
+Set-DnsClientServerAddress -InterfaceAlias "Ethernet0" -ServerAddresses 1.1.1.1
 
 # Letting the Windows server load the network settings properly (throws error on hostname lookup later)
 Echo "Loading network settings"
