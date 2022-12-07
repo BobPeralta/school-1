@@ -12,7 +12,8 @@ read -rp "Which interface is used for VLAN 57: ETH" VLAN57;
 read -rp "Which interface is used for VLAN 58: ETH" VLAN58;
 
 echo "AHA-LNX-20" > "/etc/hostname";
-echo "nameserver 10.11.8.10" > "/etc/resolv.conf";
+echo "nameserver 10.11.8.10" > "/tmp/resolv.conf";
+sudo mv /tmp/resolv.conf /etc/resolv.conf;
 
 {
 echo -e "IPADDR='10.12.8.9/24'
@@ -49,5 +50,5 @@ echo "Done...";
 sleep 1;
 echo "Rebooting..";
 
-#sudo reboot now;
+sudo reboot now;
 exit;
