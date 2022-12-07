@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Starting...";
-echo "MAKE SURE YOUR ADAPTER IS SET ON THE CORRECT PORTGROUP";
+echo "MAKE SURE YOUR ADAPTER IS SET ON THE CORRECT PORTGROUP!";
 
 # disable firewall:
 sudo systemctl disable firewalld;
