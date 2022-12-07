@@ -46,7 +46,7 @@ server {
         server_name  AHA-LNX-DMZ;
 location / {
         root   /srv/www/htdocs/;
-            index  index.html;
+        index  index/index.html;
         }
 }"
 } > /etc/nginx/conf.d/website.conf;
